@@ -6,13 +6,13 @@
 
 struct Timer
 {
-	std::chrono::time_point<std::chrono::steady_clock> start, end;
+	std::chrono::steady_clock::time_point start, end;
 	std::chrono::duration<float> duration = {};
 	double endResult = 0.0;
 
 	Timer()
 	{
-		start = std::chrono::high_resolution_clock::now();
+		start = std::chrono::steady_clock::now();
 	}
 
 	~Timer()
@@ -23,7 +23,7 @@ struct Timer
 
 	double result()
 	{
-		end = std::chrono::high_resolution_clock::now();
+		end = std::chrono::steady_clock::now();
 		duration = end - start;
 
 		endResult = (double)duration.count() * (double)1000.0f;
